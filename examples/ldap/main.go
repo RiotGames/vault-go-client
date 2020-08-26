@@ -18,7 +18,7 @@ func main() {
 	username := os.Getenv("LDAP_USERNAME")
 	password := os.Getenv("LDAP_PASSWORD")
 	secretMountPath := os.Getenv("VAULT_SECRET_MOUNT_PATH") // "example/secrets"
-	secretPath := os.Getenv("VAULT_SECRET_PATH")            // "approle_example"
+	secretPath := os.Getenv("VAULT_SECRET_PATH")            // "ldap_example"
 
 	client, err := vaultClient.NewClient(vaultClient.DefaultConfig())
 	if err != nil {

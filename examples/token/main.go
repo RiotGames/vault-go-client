@@ -16,7 +16,7 @@ type Secret struct {
 func main() {
 	vaultToken := os.Getenv("VAULT_TOKEN")
 	secretMountPath := os.Getenv("VAULT_SECRET_MOUNT_PATH") // "example/secrets"
-	secretPath := os.Getenv("VAULT_SECRET_PATH")            // "approle_example"
+	secretPath := os.Getenv("VAULT_SECRET_PATH")            // "token_example"
 
 	client, err := vaultClient.NewClient(vaultClient.DefaultConfig())
 	if err != nil {

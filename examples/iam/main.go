@@ -18,7 +18,7 @@ func main() {
 	vaultRoleName := os.Getenv("VAULT_ROLE_NAME")           // "example_role"
 	awsAuthPath := os.Getenv("VAULT_AWS_IAM_PATH")          // "example/aws"
 	secretMountPath := os.Getenv("VAULT_SECRET_MOUNT_PATH") // "example/secrets"
-	secretPath := os.Getenv("VAULT_SECRET_PATH")            // "approle_example"
+	secretPath := os.Getenv("VAULT_SECRET_PATH")            // "iam_example"
 
 	client, err := vaultClient.NewClient(vaultClient.DefaultConfig())
 	if err != nil {
