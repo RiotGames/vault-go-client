@@ -1,6 +1,6 @@
 vault-go-client
 =====
-This is a Golang client for Vault. 
+This is a Golang client for Vault. It is currently under development.  v1.0.0 will be the first official release.
 
 # Usage
 ## Creating a Client
