@@ -8,7 +8,7 @@ This is a Golang client for Vault. It is currently under development.  v1.0.0 wi
 - :heavy_check_mark: AppRole
 - :heavy_check_mark: LDAP
 - :heavy_check_mark: Token
-- K8 (coming soon)
+- k8s (coming soon)
 
 # Supported Secret Stores
 - :heavy_check_mark: KV2
