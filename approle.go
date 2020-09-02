@@ -1,14 +1,14 @@
-package vaultClient
+package vault
 
 import (
 	"errors"
 	"strings"
 
-	vault "github.com/hashicorp/vault/api"
+	hashivault "github.com/hashicorp/vault/api"
 )
 
 type appRole struct {
-	client *vault.Client
+	client *hashivault.Client
 }
 
 type AppRoleLoginOptions struct {
@@ -17,7 +17,7 @@ type AppRoleLoginOptions struct {
 	MountPath string
 }
 
-func (a *appRole) Login(options AppRoleLoginOptions) (*vault.Secret, error) {
+func (a *appRole) Login(options AppRoleLoginOptions) (*hashivault.Secret, error) {
 	authSecret, err := a.appRoleLogin(options)
 
 	if err != nil {
@@ -32,7 +32,7 @@ func (a *appRole) Login(options AppRoleLoginOptions) (*vault.Secret, error) {
 	return authSecret, nil
 }
 
-func (a *appRole) appRoleLogin(options AppRoleLoginOptions) (*vault.Secret, error) {
+func (a *appRole) appRoleLogin(options AppRoleLoginOptions) (*hashivault.Secret, error) {
 	appRoleCreds := map[string]interface{}{
 		"role_id":   options.RoleID,
 		"secret_id": options.SecretID,

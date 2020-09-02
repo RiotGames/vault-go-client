@@ -1,18 +1,18 @@
-package vaultClient
+package vault
 
 import (
-	vault "github.com/hashicorp/vault/api"
+	hashivault "github.com/hashicorp/vault/api"
 )
 
 type token struct {
-	client *vault.Client
+	client *hashivault.Client
 }
 
 type TokenOptions struct {
 	Token string
 }
 
-func (a *token) Login(options TokenOptions) (*vault.Secret, error) {
+func (a *token) Login(options TokenOptions) (*hashivault.Secret, error) {
 	a.client.SetToken(options.Token)
 	return a.client.Auth().Token().LookupSelf()
 }
