@@ -2,21 +2,21 @@ package vault
 
 import hashivault "github.com/hashicorp/vault/api"
 
-type auth struct {
-	LDAP    *ldap
-	IAM     *iam
-	Token   *token
-	AppRole *appRole
+type Auth struct {
+	LDAP    *LDAP
+	IAM     *IAM
+	Token   *Token
+	AppRole *AppRole
 }
 
-func NewAuth(client *hashivault.Client) *auth {
-	return &auth{
-		LDAP: &ldap{
+func NewAuth(client *hashivault.Client) *Auth {
+	return &Auth{
+		LDAP: &LDAP{
 			client: client},
-		IAM: &iam{
+		IAM: &IAM{
 			client: client},
-		Token: &token{
+		Token: &Token{
 			client: client},
-		AppRole: &appRole{
+		AppRole: &AppRole{
 			client: client}}
 }
