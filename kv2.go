@@ -8,7 +8,14 @@ import (
 	hashivault "github.com/hashicorp/vault/api"
 )
 
-type kv2 struct {
+type SecretMetadata struct {
+	CreatedTime  string `json:"created_time"`
+	DeletionTime string `json:"deletion_time"`
+	Version      int
+	Destroyed    bool
+}
+
+type KV2 struct {
 	client *hashivault.Client
 }
 
@@ -24,7 +31,7 @@ type KV2PutOptions struct {
 	Secrets    map[string]interface{}
 }
 
-func (k *kv2) Put(options KV2PutOptions) (*hashivault.Secret, error) {
+func (k *KV2) Put(options KV2PutOptions) (*hashivault.Secret, error) {
 	mountPath := "secret"
 	if options.MountPath != "" {
 		mountPath = strings.Trim(options.MountPath, "/")
@@ -39,7 +46,7 @@ func (k *kv2) Put(options KV2PutOptions) (*hashivault.Secret, error) {
 	return secret, nil
 }
 
-func (k *kv2) Get(options KV2GetOptions) (*hashivault.Secret, error) {
+func (k *KV2) Get(options KV2GetOptions) (*hashivault.Secret, error) {
 	mountPath := "secret"
 	if options.MountPath != "" {
 		mountPath = strings.Trim(options.MountPath, "/")
@@ -76,7 +83,7 @@ func (k *kv2) Get(options KV2GetOptions) (*hashivault.Secret, error) {
 	return secret, nil
 }
 
-func (k *kv2) write(path string, data map[string]interface{}) (*hashivault.Secret, error) {
+func (k *KV2) write(path string, data map[string]interface{}) (*hashivault.Secret, error) {
 	normalizedData := map[string]interface{}{
 		"data":    data,
 		"options": map[string]interface{}{},
@@ -84,7 +91,7 @@ func (k *kv2) write(path string, data map[string]interface{}) (*hashivault.Secre
 	return k.client.Logical().Write(path, normalizedData)
 }
 
-func (k *kv2) read(path string, data map[string][]string) (*hashivault.Secret, error) {
+func (k *KV2) read(path string, data map[string][]string) (*hashivault.Secret, error) {
 	if len(data) == 0 {
 		return k.client.Logical().Read(path)
 	}
