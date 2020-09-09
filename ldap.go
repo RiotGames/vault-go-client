@@ -1,15 +1,15 @@
-package vaultClient
+package vault
 
 import (
 	"errors"
 	"fmt"
 	"strings"
 
-	vault "github.com/hashicorp/vault/api"
+	hashivault "github.com/hashicorp/vault/api"
 )
 
 type ldap struct {
-	client *vault.Client
+	client *hashivault.Client
 }
 
 type LDAPLoginOptions struct {
@@ -18,7 +18,7 @@ type LDAPLoginOptions struct {
 	MountPath string
 }
 
-func (l *ldap) Login(options LDAPLoginOptions) (*vault.Secret, error) {
+func (l *ldap) Login(options LDAPLoginOptions) (*hashivault.Secret, error) {
 	authSecret, err := l.ldapLogin(options)
 
 	if err != nil {
@@ -33,7 +33,7 @@ func (l *ldap) Login(options LDAPLoginOptions) (*vault.Secret, error) {
 	return authSecret, nil
 }
 
-func (l *ldap) ldapLogin(options LDAPLoginOptions) (*vault.Secret, error) {
+func (l *ldap) ldapLogin(options LDAPLoginOptions) (*hashivault.Secret, error) {
 	ldapCreds := map[string]interface{}{
 		"password": options.Password,
 	}

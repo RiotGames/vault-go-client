@@ -1,6 +1,6 @@
-package vaultClient
+package vault
 
-import vault "github.com/hashicorp/vault/api"
+import hashivault "github.com/hashicorp/vault/api"
 
 type SecretMetadata struct {
 	CreatedTime  string `json:"created_time"`
@@ -9,18 +9,18 @@ type SecretMetadata struct {
 	Destroyed    bool
 }
 
-func DefaultConfig() *vault.Config {
-	return vault.DefaultConfig()
+func DefaultConfig() *hashivault.Config {
+	return hashivault.DefaultConfig()
 }
 
 type Client struct {
-	client *vault.Client
+	client *hashivault.Client
 	Auth   *auth
 	KV2    *kv2
 }
 
-func NewClient(config *vault.Config) (*Client, error) {
-	client, err := vault.NewClient(config)
+func NewClient(config *hashivault.Config) (*Client, error) {
+	client, err := hashivault.NewClient(config)
 
 	if err != nil {
 		return nil, err

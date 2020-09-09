@@ -1,6 +1,6 @@
-package vaultClient
+package vault
 
-import vault "github.com/hashicorp/vault/api"
+import hashivault "github.com/hashicorp/vault/api"
 
 type auth struct {
 	LDAP    *ldap
@@ -9,14 +9,14 @@ type auth struct {
 	AppRole *appRole
 }
 
-func NewAuth(vaultClient *vault.Client) *auth {
+func NewAuth(client *hashivault.Client) *auth {
 	return &auth{
 		LDAP: &ldap{
-			client: vaultClient},
+			client: client},
 		IAM: &iam{
-			client: vaultClient},
+			client: client},
 		Token: &token{
-			client: vaultClient},
+			client: client},
 		AppRole: &appRole{
-			client: vaultClient}}
+			client: client}}
 }

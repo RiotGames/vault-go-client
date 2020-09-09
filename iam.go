@@ -1,4 +1,4 @@
-package vaultClient
+package vault
 
 import (
 	"encoding/base64"
@@ -9,11 +9,11 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/sts"
-	vault "github.com/hashicorp/vault/api"
+	hashivault "github.com/hashicorp/vault/api"
 )
 
 type iam struct {
-	client *vault.Client
+	client *hashivault.Client
 }
 
 type IAMLoginOptions struct {
@@ -21,7 +21,7 @@ type IAMLoginOptions struct {
 	MountPath string
 }
 
-func (i *iam) Login(options IAMLoginOptions) (*vault.Secret, error) {
+func (i *iam) Login(options IAMLoginOptions) (*hashivault.Secret, error) {
 	authSecret, err := i.iamLogin(options)
 
 	if err != nil {
@@ -38,7 +38,7 @@ func (i *iam) Login(options IAMLoginOptions) (*vault.Secret, error) {
 
 // This is based on https://github.com/daveadams/onthelambda/blob/7eb4dc8a8cb58b8a17ba19ad5c68bb4affcbdd22/onthelambda.go#L118-L158
 //  Credit to @daveadams
-func (i *iam) iamLogin(options IAMLoginOptions) (*vault.Secret, error) {
+func (i *iam) iamLogin(options IAMLoginOptions) (*hashivault.Secret, error) {
 	stsClient := sts.New(session.Must(session.NewSession()))
 
 	req, _ := stsClient.GetCallerIdentityRequest(&sts.GetCallerIdentityInput{})
