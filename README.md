@@ -72,7 +72,6 @@ fmt.Printf("%v\n", secret)
 ### Raw Secret Approach
 This approach returns a `Secret` defined in `github.com/hashicorp/vault/api`.
 ```
-// This returns a 
 secret, err := client.KV2.Get(vault.KV2GetOptions{
 	MountPath:  secretMountPath,
 	SecretPath: secretPath,
