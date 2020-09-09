@@ -22,10 +22,12 @@ go get github.com/riotgames/vault-go-client
 ## Creating a Client
 The following will create a client with default configuration:
 ```
-// Uses VAULT_ADDR env var to set the clients URL
 import vault "github.com/riotgames/vault-go-client"
 ...
+
+// Uses VAULT_ADDR env var to set the clients URL
 client, err := vault.NewClient(vault.DefaultConfig())
+
 if err != nil {
     log.Fatal(err.Error())
 }
