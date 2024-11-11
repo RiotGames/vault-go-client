@@ -1,7 +1,7 @@
 vault-go-client
 =====
 # Under Development
-This is a Golang client for Vault. It is currently under development.  v1.0.0 will be the first official release.
+This is a Golang client for Vault which was primarily used for Riot's AWS temporary key generation utility, [KeyConjurer](https://github.com/RiotGames/key-conjurer). It is no longer under development. You are suggested to use the official [Hashicorp Vault SDK](https://github.com/hashicorp/vault-client-go) instead, or consider factoring your programs such that they are unaware of Vault entirely.
 
 # Supported Auth Methods
 - :heavy_check_mark: IAM
